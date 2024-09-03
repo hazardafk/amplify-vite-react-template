@@ -1,4 +1,5 @@
 import { type ClientSchema, a, defineData } from "@aws-amplify/backend";
+import { sayHello } from "../functions/sayhello/resource"
 
 /*== STEP 1 ===============================================================
 The section below creates a Todo database table with a "content" field. Try
@@ -12,6 +13,7 @@ const schema = a.schema({
       content: a.string(),
     })
     .authorization((allow) => [allow.publicApiKey()]),
+    sayhello: a    .query()    .arguments({      name: a.string(),    })    .returns(a.string())    .handler(a.handler.function(sayHello)),
 });
 
 export type Schema = ClientSchema<typeof schema>;
@@ -27,6 +29,19 @@ export const data = defineData({
   },
 });
 
+// ...
+
+// const schema = a.schema({
+//   Todo: a
+//     .model({
+//       content: a.string(),
+//     })
+//     .authorization(allow => [allow.publicApiKey()]),
+// });
+
+// ...
+
+// generate a restaurant model with the following fields: id, name, description, address, image, rating, style. Rating can be a float value. Authorization should allow public.
 /*== STEP 2 ===============================================================
 Go to your frontend source code. From your client-side code, generate a
 Data client to make CRUDL requests to your table. (THIS SNIPPET WILL ONLY
