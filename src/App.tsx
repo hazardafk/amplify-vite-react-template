@@ -58,18 +58,27 @@ function App() {
   return (
     <Authenticator>
       {({ signOut }) => (
-        <main>
-          <h1>My App</h1>
-          <button onClick={() => setShowTodoTool(true)}>Open Todo Tool</button>
-          {showTodoTool && <TodoTool todos={todos} createTodo={createTodo} deleteTodo={deleteTodo} />}
-
-          <div>
-            <h2>Navigation</h2>
-            <Link to="/about"><button>About Us</button></Link>
-            <Link to="/contact"><button>Contact Us</button></Link>
+        <div id="root">
+          <header className="header">
+            <div>
+              <h1>My App</h1>
+            </div>
+            <div>
+              <button onClick={() => setShowTodoTool(true)}>Open Todo Tool</button>
+              <button onClick={signOut}>Sign out</button>
+            </div>
+          </header>
+          <div className="main-content">
+            <img src="C:\Users\tyler\OneDrive\Desktop\Business\Amazon\amplify-vite-react-template\src\assets\79254_Hazard Labs_Flat_RD_03.jpg" alt="Landing" className="picture" />
+            {showTodoTool && <TodoTool todos={todos} createTodo={createTodo} deleteTodo={deleteTodo} />}
           </div>
-          <button onClick={signOut}>Sign out</button>
-        </main>
+          <footer className="footer">
+            <div>
+              <Link to="/about"><button>About Us</button></Link>
+              <Link to="/contact"><button>Contact Us</button></Link>
+            </div>
+          </footer>
+        </div>
       )}
     </Authenticator>
   );
